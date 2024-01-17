@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Real-time Image Processing</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.socket.io/4.6.5/socket.io.min.js"></script>
+  </head>
+
+  <body>
+    <input type="file" id="imageUpload" accept="image/*">
+    <img id="processedImage" src="" alt="Processed Image">
+
+    <script>
+      const socket = io('http://localhost:3000');
+
+      $('#imageUpload').on('change', (event) => {
+        const file = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const imageData = e.target.result;
+          // Send image data to the server for processing
+          $.post('/process-image', { image: imageData }, (response) => {
+            console.log(response.message);
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+
+      socket.on('image-processed', (processedImageData) => {
+        const processedImage = document.getElementById('processedImage');
+        processedImage.src = processedImageData;
+      });
+    </script>
+  </body>
+</html>

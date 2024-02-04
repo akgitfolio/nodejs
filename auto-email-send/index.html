@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Personalized Book Recommendations</title>
+  </head>
+  <body>
+    <h1>Hi, <%= user_name %>,</h1>
+    <p>
+      We've noticed you've been browsing some great books lately, and based on your past purchases and interests, we have some recommendations we think you'll love:
+    </p>
+    <ul>
+      <% recommendations.forEach(book => { %>
+      <li>
+        <a href="<%= book.url %>">
+          <%= book.title %> by <%= book.author %>
+        </a>
+      </li>
+      <% }) %>
+    </ul>
+    <p>Happy reading!</p>
+  </body>
+</html>

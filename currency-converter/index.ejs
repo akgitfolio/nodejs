@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Book Generator</title>
+</head>
+<body>
+  <h1>Recipe Book Generator</h1>
+  <form action="/generate-pdf" method="post" enctype="multipart/form-data">
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" required>
+
+    <label for="author">Author:</label>
+    <input type="text" name="author" id="author" required>
+
+    <label for="recipes">Recipes (drag and drop files):</label>
+    <input type="file" name="recipes" id="recipes" multiple required>
+
+    <button type="submit">Generate PDF</button>
+  </form>
+</body>
+</html>
